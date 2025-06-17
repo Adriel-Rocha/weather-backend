@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
-app.get('/previsao', async (req, res) => {
+app.get('/forecast', async (req, res) => {
     const city = req.query.city;
     const lang = req.query.lang;
     const weatherApiKey = process.env.OPENWEATHER_API_KEY;
@@ -16,12 +16,7 @@ app.get('/previsao', async (req, res) => {
     const searchEngineId = process.env.GOOGLE_SEARCH_ENGINE_ID;
 
     if (!city) {
-        if(lang == "pt-br") {
-            return res.status(400).json({ error: 'Cidade não especificada!' });
-        } else {
-            return res.status(400).json({ error: 'City unspecified!' });
-            
-        }
+        return res.status(400).json({ error: 'Cidade não especificada!' });
     }
 
     try {
@@ -58,7 +53,7 @@ app.get('/previsao', async (req, res) => {
 
     } catch (error) {
         console.error(error.response ? error.response.data : error.message);
-        res.status(500).json({ error: 'Erro ao buscar informações' });
+        res.status(500).json({ error: 'Error when searching for information' });
     }
 });
 
