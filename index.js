@@ -16,7 +16,7 @@ app.get('/forecast', async (req, res) => {
     const searchEngineId = process.env.GOOGLE_SEARCH_ENGINE_ID;
 
     if (!city) {
-        return res.status(400).json({ error: 'Cidade não especificada!' });
+        return res.status(400).json({ error: 'Unspecified city!' });
     }
 
     try {
